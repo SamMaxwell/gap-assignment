@@ -25,6 +25,10 @@ const next_sell_in = ({ categoryName, item }) => {
 const next_quality = ({ categoryName, item }) => {
   if (categoryName === 'Sulfuras') return;
   const { sell_in } = item;
+  if (categoryName === 'Backstage Pass' && sell_in < 0) {
+    item.quality = 0;
+    return;
+  }
   const isDegrading = ['Aged Brie', 'Backstage Pass'].indexOf(categoryName) == -1 ? true : false;
   const sell_in_factor = categoryName != 'Backstage Pass' ? (sell_in < 0 ? 2 : 1)
     : (sell_in <= 5 ? 3 : sell_in <= 10 ? 2 : 1);
