@@ -17,9 +17,8 @@ const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Bac
 
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
-const next_sell_in = (categorizedItem) => {
-  categorizedItem.item.sell_in = categorizedItem.item.sell_in - 1;
-  return categorizedItem;
+const next_sell_in = ({ categoryName, item }) => {
+  item.sell_in -= categoryName != 'Sulfuras' ? 1 : 0;
 }
 
 function update_quality() {
