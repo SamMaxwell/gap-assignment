@@ -20,7 +20,7 @@ describe('gilded_rose update_quality() characterization', () => {
     {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0},
     {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 22, 'sell_in': 13},
     {'name': 'Conjured Mana Cake', 'quality': 4, 'sell_in': 1}
-  ]];
+  ], null];
 
   expecteds.forEach((expected, day) => {
     it(`items should be as expected after day ${day + 1}`, () => {
