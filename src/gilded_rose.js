@@ -23,7 +23,8 @@ const next_sell_in = ({ categoryName, item }) => {
 
 const next_quality = ({ item }) => {
   const { sell_in } = item;
-  item.quality -= 1 * (sell_in < 0 ? 2 : 1);
+  const new_quality = item.quality - 1 * (sell_in < 0 ? 2 : 1);
+  item.quality = Math.max(0, new_quality);
 }
 
 function update_quality() {
