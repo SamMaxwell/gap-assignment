@@ -22,7 +22,8 @@ const next_sell_in = ({ categoryName, item }) => {
 }
 
 const next_quality = ({ item }) => {
-  item.quality -= 1;
+  const { sell_in } = item;
+  item.quality -= 1 * (sell_in < 0 ? 2 : 1);
 }
 
 function update_quality() {
