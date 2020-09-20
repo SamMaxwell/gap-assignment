@@ -17,6 +17,8 @@ const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Bac
 
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
+const next_sell_in = () => {}
+
 function update_quality() {
   items.forEach((item) => {
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
@@ -66,5 +68,6 @@ function update_quality() {
 }
 
 module.exports = {
-  categorize
+  categorize,
+  next_sell_in,
 }
