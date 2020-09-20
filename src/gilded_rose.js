@@ -20,9 +20,9 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 
 const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
 
-const get_category = (categoryName) => itemCategories[categoryName];
-
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
+
+const get_category = (categoryName) => itemCategories[categoryName];
 
 function update_quality() {
   const categorizedItems = categorize();
