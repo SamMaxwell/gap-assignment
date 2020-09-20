@@ -3,7 +3,7 @@ const { next_quality } = require('../gilded_rose');
 describe('gilded_rose next_quality()', () => {
   it('is a function', () => expect(typeof next_quality).toEqual('function'));
 
-  it('that degrades the quality of an item', () => {
+  it('degrades the quality of an item', () => {
     const given = {
       item: { quality: 10 },
     }
@@ -33,7 +33,7 @@ describe('gilded_rose next_quality()', () => {
     expect(received).toEqual(expected);
   });
 
-  it('Aged Brie increases in quality the older it gets', () => {
+  it('increases Aged Brie quality the older it gets', () => {
     const given = {
       categoryName: 'Aged Brie',
       item: { quality: 1 },
@@ -55,12 +55,23 @@ describe('gilded_rose next_quality()', () => {
     expect(received).toEqual(expected);
   });
 
-  it('Sulfuras does not decrease in quality', () => {
+  it('does not decrease Sulfuras quality', () => {
     const given = {
       categoryName: 'Sulfuras',
       item: { quality: 1 },
     }
     const expected = 1;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
+
+  it('increases Backstage Pass quality the older it gets', () => {
+    const given = {
+      categoryName: 'Backstage Pass',
+      item: { quality: 1 },
+    }
+    const expected = 2;
     next_quality(given);
     const received = given.item.quality;
     expect(received).toEqual(expected);
