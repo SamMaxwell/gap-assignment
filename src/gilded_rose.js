@@ -57,35 +57,24 @@ const itemCategories = {
   }
 }
 
-const getCategory = (categoryName) => ({
+const get_category = (categoryName) => ({
   ...itemCategories.Standard,
   ...(itemCategories[categoryName] || {})
 });
 
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
-const next_sell_in = ({ categoryName, item }) => {
-  const category = getCategory(categoryName);
-  category.next_sell_in(item);
-}
-
-const next_quality = ({ categoryName, item }) => {
-  const category = getCategory(categoryName);
-  category.next_quality(item);
-}
-
 function update_quality() {
   const categorizedItems = categorize();
 
-  categorizedItems.forEach((categorizedItem) => {
-    const { item } = categorizedItem;
-    next_sell_in(categorizedItem);
-    next_quality(categorizedItem);
+  categorizedItems.forEach(({ categoryName, item }) => {
+    const category = get_category(categoryName);
+    category.next_sell_in(item);
+    category.next_quality(item);
   });
 }
 
 module.exports = {
   categorize,
-  next_quality,
-  next_sell_in,
+  get_category,
 }
