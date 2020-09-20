@@ -13,11 +13,21 @@ describe('gilded_rose next_quality()', () => {
     expect(received).toEqual(expected);
   });
 
-  it('twice as fast when the sell_in days is less than zero', () => {
+  it('degrades quality twice as fast when the sell_in days is less than zero', () => {
     const given = {
       item: { sell_in: -1, quality: 10 },
     }
     const expected = 8;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
+
+  it('does not degrade quality below zero', () => {
+    const given = {
+      item: { sell_in: -1, quality: 1 },
+    }
+    const expected = 0;
     next_quality(given);
     const received = given.item.quality;
     expect(received).toEqual(expected);
