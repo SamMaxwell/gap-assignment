@@ -3,7 +3,7 @@ const gilded_rose = rewire('../gilded_rose');
 const update_quality = gilded_rose.__get__('update_quality');
 
 describe('gilded_rose update_quality() characterization', () => {
-  it('after 1st call items should be as expected', () => {
+  it('items should be as expected after 1st call', () => {
     update_quality();
     const received = gilded_rose.__get__('items');
     const expected = [
@@ -14,6 +14,13 @@ describe('gilded_rose update_quality() characterization', () => {
       {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 21, 'sell_in': 14},
       {'name': 'Conjured Mana Cake', 'quality': 5, 'sell_in': 2}
     ];
+    expect(received).toEqual(expected);
+  });
+
+  it('items should be as expected after 2nd call', () => {
+    update_quality();
+    const received = gilded_rose.__get__('items');
+    const expected = null;
     expect(received).toEqual(expected);
   });
 });
