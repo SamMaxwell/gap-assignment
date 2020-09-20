@@ -18,10 +18,12 @@ const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Bac
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
 const next_sell_in = ({ categoryName, item }) => {
-  item.sell_in -= categoryName != 'Sulfuras' ? 1 : 0;
+  if (categoryName === 'Sulfuras') return;
+  item.sell_in -= 1;
 }
 
 const next_quality = ({ categoryName, item }) => {
+  if (categoryName === 'Sulfuras') return;
   const { sell_in } = item;
   const isDegrading = categoryName != 'Aged Brie' ? true : false;
   const new_quality = item.quality + (isDegrading ? -1: 1) * (sell_in < 0 ? 2 : 1);
