@@ -27,7 +27,7 @@ const next_quality = ({ categoryName, item }) => {
   const { sell_in } = item;
   const isDegrading = categoryName != 'Aged Brie' ? true : false;
   const new_quality = item.quality + (isDegrading ? -1: 1) * (sell_in < 0 ? 2 : 1);
-  item.quality = Math.max(0, new_quality);
+  item.quality = Math.min(50, Math.max(0, new_quality));
 }
 
 function update_quality() {
