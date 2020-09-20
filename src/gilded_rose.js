@@ -1,7 +1,7 @@
-const { AgedBrie } = require('./AgedBrie');
-const { BackstagePass } = require('./BackstagePass');
-const { Standard } = require('./Standard');
-const { Sulfuras } = require('./Sulfuras');
+const { AgedBrie } = require('./categories/AgedBrie');
+const { BackstagePass } = require('./categories/BackstagePass');
+const { Standard } = require('./categories/Standard');
+const { Sulfuras } = require('./categories/Sulfuras');
 
 function Item(name, sell_in, quality) {
   this.name = name;
