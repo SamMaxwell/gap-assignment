@@ -43,4 +43,15 @@ describe('gilded_rose next_quality()', () => {
     const received = given.item.quality;
     expect(received).toEqual(expected);
   });
+
+  it('Sulfuras does not decrease in quality', () => {
+    const given = {
+      categoryName: 'Sulfuras',
+      item: { quality: 1 },
+    }
+    const expected = 1;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
 });
