@@ -3,6 +3,6 @@ const { base_next_sell_in } = require('./bases/base_next_sell_in');
 
 module.exports = {
   name: 'Aged Brie',
-  next_quality: (item) => base_next_quality({ item, isDegrading: false }),
+  next_quality: base_next_quality({ isDegrading: false }),
   next_sell_in: base_next_sell_in,
 }
