@@ -99,6 +99,17 @@ describe('gilded_rose next_quality()', () => {
     expect(received).toEqual(expected);
   });
 
+  it('increases Backstage Pass quality by three when less than five days', () => {
+    const given = {
+      categoryName: 'Backstage Pass',
+      item: { sell_in: 4, quality: 1 },
+    }
+    const expected = 4;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
+
   it('sets Backstage Pass quality to zero after the concert', () => {
     const given = {
       categoryName: 'Backstage Pass',
