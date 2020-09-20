@@ -6,7 +6,7 @@ describe('gilded_rose update_quality() characterization', () => {
   // update_quality() is stateful
   const received = gilded_rose.__get__('items');
 
-  const expecteds = [[
+  const dailyExpecteds = [[
     {'name': '+5 Dexterity Vest', 'quality': 19, 'sell_in': 9},
     {'name': 'Aged Brie', 'quality': 1, 'sell_in': 1},
     {'name': 'Elixir of the Mongoose', 'quality': 6, 'sell_in': 4},
@@ -197,7 +197,7 @@ describe('gilded_rose update_quality() characterization', () => {
     {'name': 'Conjured Mana Cake', 'quality': 0, 'sell_in': -24}
   ]];
 
-  expecteds.forEach((expected, day) => {
+  dailyExpecteds.forEach((expected, day) => {
     it(`items should be as expected after day ${day + 1}`, () => {
       update_quality();
       expect(received).toEqual(expected);
