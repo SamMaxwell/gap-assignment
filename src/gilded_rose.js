@@ -16,10 +16,40 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
 
 const itemCategories = {
+  'Aged Brie': {
+    next_quality: (item) => {
+      const { sell_in } = item;
+      const isDegrading = false;
+      const sell_in_factor = sell_in < 0 ? 2 : 1;
+      const new_quality = item.quality + (isDegrading ? -1 : 1) * sell_in_factor;
+      item.quality = Math.min(50, Math.max(0, new_quality));
+    },
+  },
+  'Backstage Pass': {
+    next_quality: (item) => {
+      const { sell_in } = item;
+      if (sell_in < 0) {
+        item.quality = 0;
+        return;
+      }
+      const isDegrading = false;
+      const sell_in_factor = (sell_in < 5 ? 3 : sell_in < 10 ? 2 : 1);
+      const new_quality = item.quality + (isDegrading ? -1 : 1) * sell_in_factor;
+      item.quality = Math.min(50, Math.max(0, new_quality));
+    },
+  },
   'Standard': {
+    next_quality: (item) => {
+      const { sell_in } = item;
+      const isDegrading = true;
+      const sell_in_factor = sell_in < 0 ? 2 : 1;
+      const new_quality = item.quality + (isDegrading ? -1 : 1) * sell_in_factor;
+      item.quality = Math.min(50, Math.max(0, new_quality));
+    },
     next_sell_in: (item) => item.sell_in -= 1,
   },
   'Sulfuras': {
+    next_quality: () => {},
     next_sell_in: () => {},
   }
 }
@@ -37,17 +67,8 @@ const next_sell_in = ({ categoryName, item }) => {
 }
 
 const next_quality = ({ categoryName, item }) => {
-  if (categoryName === 'Sulfuras') return;
-  const { sell_in } = item;
-  if (categoryName === 'Backstage Pass' && sell_in < 0) {
-    item.quality = 0;
-    return;
-  }
-  const isDegrading = ['Aged Brie', 'Backstage Pass'].indexOf(categoryName) == -1 ? true : false;
-  const sell_in_factor = categoryName != 'Backstage Pass' ? (sell_in < 0 ? 2 : 1)
-    : (sell_in < 5 ? 3 : sell_in < 10 ? 2 : 1);
-  const new_quality = item.quality + (isDegrading ? -1: 1) * sell_in_factor;
-  item.quality = Math.min(50, Math.max(0, new_quality));
+  const category = getCategory(categoryName);
+  category.next_quality(item);
 }
 
 function update_quality() {
