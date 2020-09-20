@@ -3,18 +3,18 @@ const { get_category } = require('../gilded_rose');
 const clone = (clonee) => JSON.parse(JSON.stringify(clonee));
 
 describe('gilded_rose Conjured category', () => {
-  const Standard = get_category('Standard');
+  const Normal = get_category('Normal');
   const Conjured = get_category('Conjured');
 
-  it('degrades the quality of an item twice as fast as Standard', () => {
+  it('degrades the quality of an item twice as fast as Normal', () => {
     const item = { sell_in: 5, quality: 10 }
 
-    const standardItem = clone(item);
+    const normalItem = clone(item);
 
-    let standardDaysToZero = 0;
+    let normalDaysToZero = 0;
 
-    for(; standardItem.quality > 0; standardDaysToZero++) {
-      Standard.next_quality(standardItem);
+    for(; normalItem.quality > 0; normalDaysToZero++) {
+      Normal.next_quality(normalItem);
     }
 
     const conjuredItem = clone(item);
@@ -25,7 +25,7 @@ describe('gilded_rose Conjured category', () => {
       Conjured.next_quality(conjuredItem);
     }
 
-    const received = standardDaysToZero;
+    const received = normalDaysToZero;
     const expected = conjuredDaysToZero * 2;
     expect(received).toEqual(expected);
   });
