@@ -22,7 +22,11 @@ const next_sell_in = ({ categoryName, item }) => {
 }
 
 function update_quality() {
-  items.forEach((item) => {
+  const categorizedItems = categorize();
+
+  categorizedItems.forEach((categorizedItem) => {
+    const { item } = categorizedItem;
+
     if (item.name != 'Aged Brie' && item.name != 'Backstage passes to a TAFKAL80ETC concert') {
       if (item.quality > 0) {
         if (item.name != 'Sulfuras, Hand of Ragnaros') {
