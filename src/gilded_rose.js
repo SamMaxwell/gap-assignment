@@ -21,6 +21,8 @@ const next_sell_in = ({ categoryName, item }) => {
   item.sell_in -= categoryName != 'Sulfuras' ? 1 : 0;
 }
 
+const next_quality = () => {}
+
 function update_quality() {
   const categorizedItems = categorize();
 
@@ -75,5 +77,6 @@ function update_quality() {
 
 module.exports = {
   categorize,
+  next_quality,
   next_sell_in,
 }
