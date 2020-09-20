@@ -20,7 +20,14 @@ describe('gilded_rose update_quality() characterization', () => {
   it('items should be as expected after 2nd call', () => {
     update_quality();
     const received = gilded_rose.__get__('items');
-    const expected = null;
+    const expected = [
+      {'name': '+5 Dexterity Vest', 'quality': 18, 'sell_in': 8},
+      {'name': 'Aged Brie', 'quality': 2, 'sell_in': 0},
+      {'name': 'Elixir of the Mongoose', 'quality': 5, 'sell_in': 3},
+      {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0},
+      {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 22, 'sell_in': 13},
+      {'name': 'Conjured Mana Cake', 'quality': 4, 'sell_in': 1}
+    ];
     expect(received).toEqual(expected);
   });
 });
