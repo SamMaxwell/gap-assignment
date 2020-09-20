@@ -13,7 +13,9 @@ items.push(new Item('Sulfuras, Hand of Ragnaros', 0, 80));
 items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
 items.push(new Item('Conjured Mana Cake', 3, 6));
 
-const categorize = () => {}
+const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
+
+const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
 function update_quality() {
   items.forEach((item) => {
