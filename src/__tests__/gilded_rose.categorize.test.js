@@ -11,7 +11,7 @@ describe('gilded_rose categorize()', () => {
       {'categoryName': 'Standard', 'item': {'name': 'Elixir of the Mongoose', 'quality': 7, 'sell_in': 5}},
       {'categoryName': 'Sulfuras', 'item': {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0}},
       {'categoryName': 'Backstage Pass', 'item': {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 20, 'sell_in': 15}},
-      {'categoryName': 'Standard', 'item': {'name': 'Conjured Mana Cake', 'quality': 6, 'sell_in': 3}}
+      {'categoryName': 'Conjured', 'item': {'name': 'Conjured Mana Cake', 'quality': 6, 'sell_in': 3}}
     ];
     expect(received).toEqual(expected);
   });

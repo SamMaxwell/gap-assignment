@@ -6,34 +6,37 @@ describe('gilded_rose update_quality() characterization', () => {
   // update_quality() is stateful
   const received = gilded_rose.__get__('items');
 
+  let conjuredAdjustmentAmount = 0;
+  const adjustExpectedConjuredQuality = (quality) => Math.max(0, quality - ++conjuredAdjustmentAmount);
+
   const dailyExpecteds = [[
     {'name': '+5 Dexterity Vest', 'quality': 19, 'sell_in': 9},
     {'name': 'Aged Brie', 'quality': 1, 'sell_in': 1},
     {'name': 'Elixir of the Mongoose', 'quality': 6, 'sell_in': 4},
     {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0},
     {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 21, 'sell_in': 14},
-    {'name': 'Conjured Mana Cake', 'quality': 5, 'sell_in': 2}
+    {'name': 'Conjured Mana Cake', 'quality': adjustExpectedConjuredQuality(5), 'sell_in': 2}
   ], [
     {'name': '+5 Dexterity Vest', 'quality': 18, 'sell_in': 8},
     {'name': 'Aged Brie', 'quality': 2, 'sell_in': 0},
     {'name': 'Elixir of the Mongoose', 'quality': 5, 'sell_in': 3},
     {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0},
     {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 22, 'sell_in': 13},
-    {'name': 'Conjured Mana Cake', 'quality': 4, 'sell_in': 1}
+    {'name': 'Conjured Mana Cake', 'quality': adjustExpectedConjuredQuality(4), 'sell_in': 1}
   ], [
     {'name': '+5 Dexterity Vest', 'quality': 17, 'sell_in': 7},
     {'name': 'Aged Brie', 'quality': 4, 'sell_in': -1},
     {'name': 'Elixir of the Mongoose', 'quality': 4, 'sell_in': 2},
     {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0},
     {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 23, 'sell_in': 12},
-    {'name': 'Conjured Mana Cake', 'quality': 3, 'sell_in': 0}
+    {'name': 'Conjured Mana Cake', 'quality': adjustExpectedConjuredQuality(3), 'sell_in': 0}
   ], [
     {'name': '+5 Dexterity Vest', 'quality': 16, 'sell_in': 6},
     {'name': 'Aged Brie', 'quality': 6, 'sell_in': -2},
     {'name': 'Elixir of the Mongoose', 'quality': 3, 'sell_in': 1},
     {'name': 'Sulfuras, Hand of Ragnaros', 'quality': 80, 'sell_in': 0},
     {'name': 'Backstage passes to a TAFKAL80ETC concert', 'quality': 24, 'sell_in': 11},
-    {'name': 'Conjured Mana Cake', 'quality': 1, 'sell_in': -1}
+    {'name': 'Conjured Mana Cake', 'quality': adjustExpectedConjuredQuality(1), 'sell_in': -1}
   ], [
     {'name': '+5 Dexterity Vest', 'quality': 15, 'sell_in': 5},
     {'name': 'Aged Brie', 'quality': 8, 'sell_in': -3},
