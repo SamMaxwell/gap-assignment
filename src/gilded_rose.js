@@ -1,7 +1,7 @@
-const { base_next_quality } = require('./base_next_quality');
 const { AgedBrie } = require('./AgedBrie');
 const { BackstagePass } = require('./BackstagePass');
 const { Standard } = require('./Standard');
+const { Sulfuras } = require('./Sulfuras');
 
 function Item(name, sell_in, quality) {
   this.name = name;
@@ -26,10 +26,7 @@ const itemCategories = {
   'Aged Brie': AgedBrie,
   'Backstage Pass': BackstagePass,
   Standard,
-  'Sulfuras': {
-    next_quality: noop,
-    next_sell_in: noop,
-  }
+  Sulfuras,
 }
 
 const get_category = (categoryName) => ({
