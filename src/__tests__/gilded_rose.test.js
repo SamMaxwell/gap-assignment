@@ -3,9 +3,11 @@ const gilded_rose = rewire('../gilded_rose');
 const update_quality = gilded_rose.__get__('update_quality');
 
 describe('gilded_rose update_quality() characterization', () => {
+  // update_quality() is stateful
+  const received = gilded_rose.__get__('items');
+
   it('items should be as expected after 1st call', () => {
     update_quality();
-    const received = gilded_rose.__get__('items');
     const expected = [
       {'name': '+5 Dexterity Vest', 'quality': 19, 'sell_in': 9},
       {'name': 'Aged Brie', 'quality': 1, 'sell_in': 1},
@@ -19,7 +21,6 @@ describe('gilded_rose update_quality() characterization', () => {
 
   it('items should be as expected after 2nd call', () => {
     update_quality();
-    const received = gilded_rose.__get__('items');
     const expected = [
       {'name': '+5 Dexterity Vest', 'quality': 18, 'sell_in': 8},
       {'name': 'Aged Brie', 'quality': 2, 'sell_in': 0},
