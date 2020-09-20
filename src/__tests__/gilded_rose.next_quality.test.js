@@ -32,4 +32,15 @@ describe('gilded_rose next_quality()', () => {
     const received = given.item.quality;
     expect(received).toEqual(expected);
   });
+
+  it('Aged Brie increases in quality the older it gets', () => {
+    const given = {
+      categoryName: 'Aged Brie',
+      item: { quality: 1 },
+    }
+    const expected = 2;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
 });
