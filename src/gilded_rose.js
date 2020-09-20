@@ -1,3 +1,5 @@
+const { base_next_quality } = require('./base_next_quality');
+
 function Item(name, sell_in, quality) {
   this.name = name;
   this.sell_in = sell_in;
@@ -16,18 +18,6 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
 
 const noop = () => {}
-
-const base_next_quality = ({
-  item,
-  isDegrading = true,
-  setZero = (_) => false,
-  sell_in_factor = (sell_in) => sell_in < 0 ? 2 : 1
-}) => {
-  const { sell_in } = item;
-  const new_quality = setZero(sell_in) ? 0
-    : item.quality + (isDegrading ? -1 : 1) * sell_in_factor(sell_in);
-  item.quality = Math.min(50, Math.max(0, new_quality));
-}
 
 const itemCategories = {
   'Aged Brie': {
