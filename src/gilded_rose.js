@@ -17,36 +17,37 @@ const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Bac
 
 const noop = () => {}
 
+const base_next_quality = ({
+  item,
+  isDegrading = true,
+  setZero = (_) => false,
+  sell_in_factor = (sell_in) => sell_in < 0 ? 2 : 1
+}) => {
+  const { sell_in } = item;
+  const new_quality = setZero(sell_in) ? 0
+    : item.quality + (isDegrading ? -1 : 1) * sell_in_factor(sell_in);
+  item.quality = Math.min(50, Math.max(0, new_quality));
+}
+
 const itemCategories = {
   'Aged Brie': {
     next_quality: (item) => {
-      const { sell_in } = item;
-      const isDegrading = false;
-      const sell_in_factor = sell_in < 0 ? 2 : 1;
-      const new_quality = item.quality + (isDegrading ? -1 : 1) * sell_in_factor;
-      item.quality = Math.min(50, Math.max(0, new_quality));
+      base_next_quality({ item, isDegrading: false });
     },
   },
   'Backstage Pass': {
     next_quality: (item) => {
-      const { sell_in } = item;
-      if (sell_in < 0) {
-        item.quality = 0;
-        return;
-      }
-      const isDegrading = false;
-      const sell_in_factor = (sell_in < 5 ? 3 : sell_in < 10 ? 2 : 1);
-      const new_quality = item.quality + (isDegrading ? -1 : 1) * sell_in_factor;
-      item.quality = Math.min(50, Math.max(0, new_quality));
+      base_next_quality({
+        item,
+        setZero: (sell_in) => sell_in < 0,
+        isDegrading: false,
+        sell_in_factor: (sell_in) => sell_in < 5 ? 3 : sell_in < 10 ? 2 : 1,
+      });
     },
   },
   'Standard': {
     next_quality: (item) => {
-      const { sell_in } = item;
-      const isDegrading = true;
-      const sell_in_factor = sell_in < 0 ? 2 : 1;
-      const new_quality = item.quality + (isDegrading ? -1 : 1) * sell_in_factor;
-      item.quality = Math.min(50, Math.max(0, new_quality));
+      base_next_quality({ item });
     },
     next_sell_in: (item) => item.sell_in -= 1,
   },
