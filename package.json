@@ -1,0 +1,19 @@
+{
+  "name": "gap-assignment",
+  "version": "1.0.0",
+  "description": "coding exercise for GAP (gilded rose)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamMaxwell/gap-assignment.git"
+  },
+  "author": "Sam Maxwell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SamMaxwell/gap-assignment/issues"
+  },
+  "homepage": "https://github.com/SamMaxwell/gap-assignment#readme"
+}
