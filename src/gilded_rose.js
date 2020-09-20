@@ -15,11 +15,25 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 
 const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
 
+const itemCategories = {
+  'Standard': {
+    next_sell_in: (item) => item.sell_in -= 1,
+  },
+  'Sulfuras': {
+    next_sell_in: () => {},
+  }
+}
+
+const getCategory = (categoryName) => ({
+  ...itemCategories.Standard,
+  ...(itemCategories[categoryName] || {})
+});
+
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
 const next_sell_in = ({ categoryName, item }) => {
-  if (categoryName === 'Sulfuras') return;
-  item.sell_in -= 1;
+  const category = getCategory(categoryName);
+  category.next_sell_in(item);
 }
 
 const next_quality = ({ categoryName, item }) => {
