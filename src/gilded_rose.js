@@ -17,7 +17,10 @@ const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Bac
 
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
-const next_sell_in = () => {}
+const next_sell_in = (categorizedItem) => {
+  categorizedItem.item.sell_in = categorizedItem.item.sell_in - 1;
+  return categorizedItem;
+}
 
 function update_quality() {
   items.forEach((item) => {
