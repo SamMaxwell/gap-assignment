@@ -44,6 +44,17 @@ describe('gilded_rose next_quality()', () => {
     expect(received).toEqual(expected);
   });
 
+  it('never sets the quality of an item more than 50', () => {
+    const given = {
+      categoryName: 'Aged Brie',
+      item: { sell_in: -5, quality: 49 },
+    }
+    const expected = 50;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
+
   it('Sulfuras does not decrease in quality', () => {
     const given = {
       categoryName: 'Sulfuras',
