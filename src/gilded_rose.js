@@ -15,6 +15,8 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 
 const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
 
+const noop = () => {}
+
 const itemCategories = {
   'Aged Brie': {
     next_quality: (item) => {
@@ -49,8 +51,8 @@ const itemCategories = {
     next_sell_in: (item) => item.sell_in -= 1,
   },
   'Sulfuras': {
-    next_quality: () => {},
-    next_sell_in: () => {},
+    next_quality: noop,
+    next_sell_in: noop,
   }
 }
 
