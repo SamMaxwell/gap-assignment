@@ -21,9 +21,10 @@ const next_sell_in = ({ categoryName, item }) => {
   item.sell_in -= categoryName != 'Sulfuras' ? 1 : 0;
 }
 
-const next_quality = ({ item }) => {
+const next_quality = ({ categoryName, item }) => {
   const { sell_in } = item;
-  const new_quality = item.quality - 1 * (sell_in < 0 ? 2 : 1);
+  const isDegrading = categoryName != 'Aged Brie' ? true : false;
+  const new_quality = item.quality + (isDegrading ? -1: 1) * (sell_in < 0 ? 2 : 1);
   item.quality = Math.max(0, new_quality);
 }
 
