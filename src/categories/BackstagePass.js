@@ -1,7 +1,8 @@
 const { base_next_quality } = require('./bases/base_next_quality');
 const { base_next_sell_in } = require('./bases/base_next_sell_in');
 
-const BackstagePass = {
+module.exports = {
+  name: 'Backstage Pass',
   next_quality: (item) => base_next_quality({
     item,
     setZero: (sell_in) => sell_in < 0,
@@ -10,5 +11,3 @@ const BackstagePass = {
   }),
   next_sell_in: base_next_sell_in,
 }
-
-module.exports = { BackstagePass }

@@ -1,7 +1,7 @@
-const { AgedBrie } = require('./categories/AgedBrie');
-const { BackstagePass } = require('./categories/BackstagePass');
-const { Standard } = require('./categories/Standard');
-const { Sulfuras } = require('./categories/Sulfuras');
+const { join } = require('path');
+const { loader } = require('./util/loader');
+
+const itemCategories = loader(join(__dirname, './categories'));
 
 function Item(name, sell_in, quality) {
   this.name = name;
@@ -19,13 +19,6 @@ items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 15, 20));
 items.push(new Item('Conjured Mana Cake', 3, 6));
 
 const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Backstage Pass', 'Standard'];
-
-const itemCategories = {
-  'Aged Brie': AgedBrie,
-  'Backstage Pass': BackstagePass,
-  Standard,
-  Sulfuras,
-}
 
 const get_category = (categoryName) => itemCategories[categoryName];
 
