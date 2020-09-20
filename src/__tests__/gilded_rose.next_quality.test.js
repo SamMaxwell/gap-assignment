@@ -12,4 +12,14 @@ describe('gilded_rose next_quality()', () => {
     const received = given.item.quality;
     expect(received).toEqual(expected);
   });
+
+  it('twice as fast when the sell_in days is less than zero', () => {
+    const given = {
+      item: { sell_in: -1, quality: 10 },
+    }
+    const expected = 8;
+    next_quality(given);
+    const received = given.item.quality;
+    expect(received).toEqual(expected);
+  });
 });
