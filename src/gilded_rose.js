@@ -1,4 +1,5 @@
 const { base_next_quality } = require('./base_next_quality');
+const { AgedBrie } = require('./AgedBrie');
 
 function Item(name, sell_in, quality) {
   this.name = name;
@@ -20,11 +21,7 @@ const itemCategoryNames = ['Standard', 'Aged Brie', 'Standard', 'Sulfuras', 'Bac
 const noop = () => {}
 
 const itemCategories = {
-  'Aged Brie': {
-    next_quality: (item) => {
-      base_next_quality({ item, isDegrading: false });
-    },
-  },
+  'Aged Brie': AgedBrie,
   'Backstage Pass': {
     next_quality: (item) => {
       base_next_quality({
