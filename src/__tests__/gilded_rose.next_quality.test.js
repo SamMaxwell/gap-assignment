@@ -77,12 +77,12 @@ describe('gilded_rose next_quality()', () => {
     expect(received).toEqual(expected);
   });
 
-  it('increases Backstage Pass quality by two when ten days or less', () => {
+  it('increases Backstage Pass quality by one when ten or more days', () => {
     const given = {
       categoryName: 'Backstage Pass',
       item: { sell_in: 10, quality: 1 },
     }
-    const expected = 3;
+    const expected = 2;
     next_quality(given);
     const received = given.item.quality;
     expect(received).toEqual(expected);
