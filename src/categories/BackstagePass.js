@@ -1,5 +1,5 @@
-const { base_next_quality } = require('./base_next_quality');
-const { base_next_sell_in } = require('./base_next_sell_in');
+const { base_next_quality } = require('./bases/base_next_quality');
+const { base_next_sell_in } = require('./bases/base_next_sell_in');
 
 const BackstagePass = {
   next_quality: (item) => base_next_quality({
