@@ -1,4 +1,6 @@
-const { categorize } = require('../gilded_rose');
+const rewire = require('rewire');
+const gilded_rose = rewire('../gilded_rose');
+const categorize = gilded_rose.__get__('categorize');
 
 describe('gilded_rose categorize()', () => {
   it('is a function', () => expect(typeof categorize).toEqual('function'));

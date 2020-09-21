@@ -1,7 +1,9 @@
-const { get_category } = require('../gilded_rose');
+const rewire = require('rewire');
+const gilded_rose = rewire('../gilded_rose');
+const itemCategories = gilded_rose.__get__('itemCategories');
 
 describe('gilded_rose Aged Brie category', () => {
-  const AgedBrie = get_category('Aged Brie');
+  const AgedBrie = itemCategories['Aged Brie'];
 
   it('enhances the quality of an item by one when its sell_in is not negative', () => {
     const item = { quality: 1 }

@@ -1,7 +1,9 @@
-const { get_category } = require('../gilded_rose');
+const rewire = require('rewire');
+const gilded_rose = rewire('../gilded_rose');
+const itemCategories = gilded_rose.__get__('itemCategories');
 
 describe('gilded_rose Sulfuras category', () => {
-  const Sulfuras = get_category('Sulfuras');
+  const Sulfuras = itemCategories['Sulfuras'];
 
   it('does not decreases the sell_in of an item each day', () => {
     const item = { sell_in: 10 }

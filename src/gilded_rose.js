@@ -22,19 +22,12 @@ const itemCategoryNames = ['Normal', 'Aged Brie', 'Normal', 'Sulfuras', 'Backsta
 
 const categorize = () => items.map((item, i) => ({ categoryName: itemCategoryNames[i], item }));
 
-const get_category = (categoryName) => itemCategories[categoryName];
-
 function update_quality() {
   const categorizedItems = categorize();
 
   categorizedItems.forEach(({ categoryName, item }) => {
-    const category = get_category(categoryName);
+    const category = itemCategories[categoryName];
     category.next_sell_in(item);
     category.next_quality(item);
   });
-}
-
-module.exports = {
-  categorize,
-  get_category,
 }

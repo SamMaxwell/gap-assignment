@@ -1,10 +1,12 @@
-const { get_category } = require('../gilded_rose');
+const rewire = require('rewire');
+const gilded_rose = rewire('../gilded_rose');
+const itemCategories = gilded_rose.__get__('itemCategories');
 
 const clone = (clonee) => JSON.parse(JSON.stringify(clonee));
 
 describe('gilded_rose Conjured category', () => {
-  const Normal = get_category('Normal');
-  const Conjured = get_category('Conjured');
+  const Normal = itemCategories['Normal'];
+  const Conjured = itemCategories['Conjured'];
 
   it('degrades the quality of an item twice as fast as Normal', () => {
     const item = { sell_in: 5, quality: 10 }
